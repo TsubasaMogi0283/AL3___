@@ -59,7 +59,14 @@ void GameScene::Update() {
 	}
 
 	//デバッグテキストの表示
+	ImGui::Begin("Debug1");
+	//float3入力ボックス
 	ImGui::Text("Mogi Tsubasa %d.%d.%d", 2050, 12, 31);
+	// float3入力スライダー
+	ImGui::SliderFloat3("SliderFloat3", inputFloat3, 0.0f, 1.0f);
+
+	ImGui::End();
+	
 
 }
 
