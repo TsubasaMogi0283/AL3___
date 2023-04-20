@@ -2,6 +2,7 @@
 #include "TextureManager.h"
 #include <cassert>
 #include <ImGuiManager.h>
+#include <PrimitiveDrawer.h>
 
 GameScene::GameScene() {}
 
@@ -40,6 +41,12 @@ void GameScene::Initialize() {
 
 	//音声再生
 	voiceHandle_ = audio_->PlayWave(soundDataHandle_, true);
+
+	//ライン描画が参照するビュープロジェクションを指定する(アドレス渡し)
+	PrimitiveDrawer::GetInstance()->SetViewProjection(&viewProjection_);
+	//ラインを描画する
+	//DrawLine3d({始点座標}, {終点座標}, {RGBA})
+	PrimitiveDrawer::GetInstance()->DrawLine3d({0, 0, 0}, {0, 10, 0}, {1.0f, 0.0f, 0.0f, 1.0f});
 
 }
 
