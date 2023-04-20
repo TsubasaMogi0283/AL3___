@@ -34,6 +34,9 @@ void GameScene::Initialize() {
 	//サウンドデータの読み込み
 	soundDataHandle_ = audio_->LoadWave("fanfare.wav");
 
+	//音声再生
+	audio_->PlayWave(soundDataHandle_);
+
 }
 
 void GameScene::Update() {
