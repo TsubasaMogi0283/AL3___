@@ -3,6 +3,7 @@
 #include <cassert>
 #include <ImGuiManager.h>
 #include <PrimitiveDrawer.h>
+#include <AxisIndicator.h>
 
 GameScene::GameScene() {}
 
@@ -48,6 +49,11 @@ void GameScene::Initialize() {
 	
 	//デバッグカメラの生成
 	debugCamera_ = new DebugCamera(100, 100);
+
+	//軸方向表示を有効にする
+	AxisIndicator::GetInstance()->SetVisible(true);
+	//軸方向表示が参照するビュープロジェクションを指定する(アドレス渡し)
+	AxisIndicator::GetInstance()->SetTargetViewProjection(&debugCamera_->GetViewProjection());
 
 }
 
@@ -114,6 +120,9 @@ void GameScene::Draw() {
 	/// </summary>
 
 	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
+
+	//モデルを連動させる
+	model_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
