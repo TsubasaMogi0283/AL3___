@@ -4,7 +4,9 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() { 
+	delete sprite_; 
+}
 
 void GameScene::Initialize() {
 
@@ -15,6 +17,9 @@ void GameScene::Initialize() {
 	//ファイル名を指定してテクスチャを読み込む
 	//Resourcesフォルダの中で指定してね
 	textureHandle_ = TextureManager::Load("sample.png");
+
+	//スプライトの生成
+	sprite_ = Sprite::Create(textureHandle_, {100, 50});
 
 }
 
