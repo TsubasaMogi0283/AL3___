@@ -37,6 +37,9 @@ void GameScene::Initialize() {
 	//音声再生
 	audio_->PlayWave(soundDataHandle_);
 
+	//音声再生
+	voiceHandle_ = audio_->PlayWave(soundDataHandle_, true);
+
 }
 
 void GameScene::Update() {
@@ -47,6 +50,13 @@ void GameScene::Update() {
 	position.y += 1.0f;
 	//移動した座標をスプライトに反映
 	sprite_->SetPosition(position);
+
+	//スペースキーを押した瞬間
+	if (input_->TriggerKey(DIK_SPACE)) {
+		//音声停止
+		audio_->StopWave(voiceHandle_);
+	}
+
 }
 
 void GameScene::Draw() {
