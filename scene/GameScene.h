@@ -8,6 +8,7 @@
 #include "Sprite.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
+#include <DebugCamera.h>
 
 /// <summary>
 /// ゲームシーン
@@ -68,6 +69,9 @@ private: // メンバ変数
 	//入力ボックス、スライダー
 	//ImGuiで値を入力する変数
 	float inputFloat3[3] = {0, 0, 0};
+
+	//デバッグカメラ
+	DebugCamera* debugCamera_ = nullptr;
 
 
 	/// <summary>

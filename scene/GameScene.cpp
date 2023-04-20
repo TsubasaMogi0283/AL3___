@@ -9,6 +9,7 @@ GameScene::GameScene() {}
 GameScene::~GameScene() { 
 	delete sprite_; 
 	delete model_;
+	delete debugCamera_;
 }
 
 void GameScene::Initialize() {
@@ -44,9 +45,9 @@ void GameScene::Initialize() {
 
 	//ライン描画が参照するビュープロジェクションを指定する(アドレス渡し)
 	PrimitiveDrawer::GetInstance()->SetViewProjection(&viewProjection_);
-	//ラインを描画する
-	//DrawLine3d({始点座標}, {終点座標}, {RGBA})
-	//PrimitiveDrawer::GetInstance()->DrawLine3d({0, 0, 0}, {0, 10, 0}, {1.0f, 0.0f, 0.0f, 1.0f});
+	
+	//デバッグカメラの生成
+	debugCamera_ = new DebugCamera(100, 100);
 
 }
 
@@ -78,6 +79,8 @@ void GameScene::Update() {
 	//デモウィンドウの表示を有効化
 	ImGui::ShowDemoWindow();
 
+	//デバッグカメラの更新
+	debugCamera_->Update();
 
 }
 
@@ -114,6 +117,12 @@ void GameScene::Draw() {
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
+
+	// ラインを描画する
+	// DrawLine3d({始点座標}, {終点座標}, {RGBA})
+	PrimitiveDrawer::GetInstance()->DrawLine3d({0, 0, 0}, {0, 10, 0}, {1.0f, 0.0f, 0.0f, 1.0f});
+
+
 #pragma endregion
 
 #pragma region 前景スプライト描画
