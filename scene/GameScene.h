@@ -21,6 +21,7 @@ public: // メンバ関数
 	/// </summary>
 	GameScene();
 
+
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
